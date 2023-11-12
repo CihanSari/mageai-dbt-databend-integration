@@ -21,5 +21,8 @@ RUN chmod +x /usr/local/bin/dbt
 
 # Intermediate stage for testing
 FROM mdd as mdd-test
-COPY test.sh test.sh
-RUN bash test.sh
+COPY dbt-debug.sh dbt-debug.sh
+COPY profiles.yml /root/.dbt/profiles.yml
+COPY dbt_project.yml /dbt_project.yml
+# RUN git clone https://github.com/dbt-labs/jaffle_shop /jaffle_shop
+RUN bash dbt-debug.sh
